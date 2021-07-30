@@ -1,6 +1,7 @@
-import { app } from 'electron';
+import { app, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
+import db from "./helpers/database";
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
@@ -30,3 +31,15 @@ if (isProd) {
 app.on('window-all-closed', () => {
   app.quit();
 });
+
+async function createGame(event){
+    const docRef = db.collection("games").doc("valorant");
+    const res = await docRef.set({
+        Name: "Valorant",
+        WinExecutable: "valorant.exe",
+    });
+    console.log(res);
+    event.reply("create-game-r", "Received");
+}
+
+ipcMain.on("create-game", createGame)

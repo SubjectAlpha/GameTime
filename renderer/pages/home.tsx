@@ -1,8 +1,27 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import electron from 'electron';
 
 function Home() {
+
+    const ipcRenderer = electron.ipcRenderer || false;
+
+    let clickHandler = () => {
+        console.log("ipcRenderer not loaded");
+    }
+
+    if(ipcRenderer){
+        ipcRenderer.on("create-movie-r", (e, arg) => {
+            console.log(arg);
+        });
+
+        clickHandler = () => {
+            console.log("sending game")
+            ipcRenderer.send("create-game");
+        }
+    }
+
   return (
     <React.Fragment>
       <Head>
@@ -23,6 +42,7 @@ function Home() {
           <a className='btn-blue'>Go to next page</a>
         </Link>
       </div>
+      <button className="btn-blue" onClick={clickHandler}>Create Game</button>
     </React.Fragment>
   );
 }
