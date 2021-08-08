@@ -3,7 +3,7 @@
   "name": "GameTime",
   "description": "My application description",
   "version": "1.0.0",
-  "author": "Jacob Starr <jakestarr60@gmail.com>",
+  "author": "Jacob Starr <contact@jacobstarr.me>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
@@ -13,11 +13,18 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@fseehawer/react-circular-slider": "^2.3.5",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.0.0",
+    "electron-updater": "^4.3.9",
     "firebase-admin": "^9.11.0",
-    "react-pro-sidebar": "^0.6.0"
+    "react-circle-slider": "^1.6.2",
+    "react-notifications": "^1.7.2",
+    "react-pro-sidebar": "^0.6.0",
+    "react-responsive-modal": "^6.1.0",
+    "react-switch": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
