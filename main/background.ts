@@ -3,6 +3,7 @@ import serve from "electron-serve";
 import { autoUpdater } from "electron-updater";
 import { createWindow } from "./helpers";
 import db from "./helpers/database";
+import store from "./helpers/store";
 import { isRunning } from "./helpers/helpers";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
@@ -38,14 +39,37 @@ if (isProd) {
     autoUpdater.on("update-downloaded", () => {
         mainWindow.webContents.send("update_downloaded");
     });
-
-	const docRef = db.collection("games").doc("valorant");
-	let doc = await docRef.get();
-	console.log(doc.data());
-	isRunning(doc.data().Name, (status) => {
-		console.log(status);
-	});
 })();
+
+async function populateGameStore(){
+    console.log("no games found in store. downloading...");
+    let games = [];
+    const querySnapshot = await db.collection("games").get();
+    querySnapshot.forEach(async (doc) => {
+        console.log(doc.id, " => ", doc.data());
+        games.push(doc.data().Name);
+    })
+    console.log("end of check");
+    console.log(games);
+    store.set("games", games);
+}
+
+//Polling to check for running games
+setInterval(async () => {
+    console.log("polling");
+    let games: [] = store.get("games");
+    console.log(games);
+    //games = JSON.parse(games);
+    if(games.length > 0){
+        games.forEach(game => {
+            isRunning(game, (status) => {
+                console.log(status);
+            });
+        });
+    } else {
+        populateGameStore()
+    }
+}, 10000)
 
 app.on("window-all-closed", () => {
 	app.quit();
