@@ -6,7 +6,7 @@ function Games() {
     
 	return (
 		<React.Fragment>
-			<GameComponent name="Valorant"/>
+			<GameComponent name="Valorant">Valorant</GameComponent>
 		</React.Fragment>
 	);
 }

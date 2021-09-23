@@ -12,15 +12,13 @@ function SettingsComponent(props){
         setToggle(!notifs);
     }
 
-    console.log(props)
-
     return(
-        <div className="grid grid-cols-2 p-6 border-2 border-grey-500 rounded-lg space-x-80">
-            <h3>
+        <div className="grid grid-cols-8 m-2 p-4 border-2 border-grey-500 rounded-lg">
+            <h3 className="col-span-7">
                 {props.children}
             </h3>
             
-            <Switch onChange={toggleHandler} checked={toggleSetting}/>
+            <Switch onChange={toggleHandler} checked={toggleSetting} disabled={props.disabled}/>
         </div>
 
     )

@@ -14,7 +14,7 @@ function Settings(){
 
             <div className="w-full">
                 <SettingsComponent name="osNotifications" value={store.get("osNotifications")}>Enable OS notifications</SettingsComponent>
-                <SettingsComponent name="autoStart" value={store.get("autoStart")}>Auto Start</SettingsComponent>
+                <SettingsComponent name="autoStart" value={store.get("autoStart")} disabled>Auto Start</SettingsComponent>
             </div>
         </React.Fragment>
     )
