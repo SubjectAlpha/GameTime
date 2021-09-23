@@ -19,6 +19,7 @@
     "electron-serve": "^1.1.0",
     "electron-store": "^8.0.0",
     "electron-updater": "^4.3.9",
+    "find-process": "^1.4.5",
     "firebase-admin": "^9.11.0",
     "react-circle-slider": "^1.6.2",
     "react-notifications": "^1.7.2",

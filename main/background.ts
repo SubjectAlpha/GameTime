@@ -41,8 +41,12 @@ if (isProd) {
 
 	const docRef = db.collection("games").doc("valorant");
 	let doc = await docRef.get();
-	console.log(doc.data());
-	isRunning(doc.data().Name, (status) => {
+    const docData = doc.data();
+	console.log(docData);
+	isRunning(docData.Name, (status) => {
+		console.log(status);
+	});
+    isRunning("firefox", (status) => {
 		console.log(status);
 	});
 })();
